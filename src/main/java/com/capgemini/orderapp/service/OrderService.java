@@ -13,12 +13,12 @@ public interface OrderService {
 
 	public Orders getOrderById(int orderId);
 
-	public void submitOrder(Orders order);
+	public void submitOrder(Orders order);//
 
 	public void updateOrder(Orders order);
 
-	public void deleteOrder(int orderId);
+	public void deleteOrder(int orderId);//
 
-	public void cancelOrder(int orderId);
+	public void cancelOrder(int orderId);//
 
 }

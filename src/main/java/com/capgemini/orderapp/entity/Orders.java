@@ -1,10 +1,11 @@
 package com.capgemini.orderapp.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -12,27 +13,27 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "ord")
+@Table(name = "orders")
 public class Orders {
 	@Id
 	private int orderId;
 	private double orderTotal;
-	private Date orderDate;
+	private LocalDate orderDate;
 	private int customerId;
+	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
 	private List<Items> items;
-
 	public Orders() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(int orderId, double orderTotal, Date orderDate, int customerId, List<Items> items) {
+	public Orders(int orderId, double orderTotal, LocalDate orderDate, int customerId, List<Items> items) {
 		super();
 		this.orderId = orderId;
 		this.orderTotal = orderTotal;
 		this.orderDate = orderDate;
 		this.customerId = customerId;
-	//	this.items = items;
+		this.items = items;
 	}
 
 	public int getOrderId() {
@@ -51,11 +52,11 @@ public class Orders {
 		this.orderTotal = orderTotal;
 	}
 
-	public Date getOrderDate() {
+	public LocalDate getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(LocalDate orderDate) {
 		this.orderDate = orderDate;
 	}
 
@@ -67,13 +68,13 @@ public class Orders {
 		this.customerId = customerId;
 	}
 
-//	public List<Items> getItems() {
-//		return items;
-//	}
-//
-//	public void setItems(List<Items> items) {
-//		this.items = items;
-//	}
+	public List<Items> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Items> items) {
+		this.items = items;
+	}
 
 	@Override
 	public String toString() {
